@@ -1,0 +1,7 @@
+nl:
+  hello: "hoi"
+  date:
+    formats:
+      default: "%A %Y-%m-%d"
+
+    day_names: [zondag, maandag, dinsdag, woensdag, donderdag, vrijdag, zaterdag]

@@ -1,3 +1,6 @@
-<p>Welcome to Sinatra and DataMapper project!</p>
+<p>Theater 92 tickets</p>
 
-<p><a href="/articles">Go to Articles</a></p>
+<% @shows.each do |show| %>
+  <h2><%= I18n.l show.date, :format => "%A %Y-%m-%d" %></h2>
+  <%= show.max - show.taken %>/<%= show.max %>
+<% end %>

@@ -1,0 +1,9 @@
+<form action="/edit/" method="post" accept-charset="utf-8">
+      	<input name="_method" type="hidden" value="put" />
+<% @shows.each do |show| %>
+  <h2><%= I18n.l show.date, :format => "%A %Y-%m-%d" %></h2>
+    	<p>Title: <input type="text" name="show<%=show.id%>taken" value="<%= show.taken %>" id="show<%=show.id%>taken" /></p>
+    	<p>Title: <input type="text" name="show<%=show.id%>max" value="<%= show.max %>" id="show<%=show.id%>max" /></p>
+<% end %>
+	<p><input type="submit" value="Update article" /></p>
+</form>
