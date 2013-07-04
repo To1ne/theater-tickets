@@ -12,7 +12,7 @@ class Show
   include DataMapper::Resource
 
   property :id, Serial
-  property :date, Date
+  property :date, DateTime
   property :max, Integer
   property :taken, Integer, :default => 0
 end
@@ -20,12 +20,12 @@ end
 DataMapper.finalize.auto_upgrade!
 
 if Show.all.empty?
-  show = Show.create(:date => Date.new(2014,  3,  8), :max => 170)
-  show = Show.create(:date => Date.new(2014,  3,  9), :max => 170)
-  show = Show.create(:date => Date.new(2014,  3, 15), :max => 170)
-  show = Show.create(:date => Date.new(2014,  3, 16), :max => 170)
-  show = Show.create(:date => Date.new(2014,  3, 22), :max => 170)
-  show = Show.create(:date => Date.new(2014,  3, 23), :max => 170)
+  show = Show.create(:date => DateTime.new(2014, 3,  8, 19, 30), :max => 170)
+  show = Show.create(:date => DateTime.new(2014, 3,  9, 13, 30), :max => 170)
+  show = Show.create(:date => DateTime.new(2014, 3, 15, 19, 30), :max => 170)
+  show = Show.create(:date => DateTime.new(2014, 3, 16, 13, 30), :max => 170)
+  show = Show.create(:date => DateTime.new(2014, 3, 22, 19, 30), :max => 170)
+  show = Show.create(:date => DateTime.new(2014, 3, 23, 13, 30), :max => 170)
 end
 
 get '/' do
@@ -38,23 +38,11 @@ get '/edit' do
   erb :edit
 end
 
-# post '/articles' do
-#   article = Article.new(params[:article])
-  
-#   if article.save
-#     redirect '/articles'
-#   else
-#     redirect '/articles/new'
-#   end
-# end
-
-# put '/articles/:id' do |id|
-#   article = Article.get!(id)
-#   success = article.update!(params[:article])
-  
-#   if success
-#     redirect "/articles/#{id}"
-#   else
-#     redirect "/articles/#{id}/edit"
-#   end
-# end
+put '/update/' do
+  params[:show].each do |param|
+    id = param[0]
+    show = Show.get!(id)
+    success = show.update!(param[1])
+  end
+  redirect "/"
+end

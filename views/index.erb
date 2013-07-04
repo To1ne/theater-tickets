@@ -1,6 +1,6 @@
 <p>Theater 92 tickets</p>
 
 <% @shows.each do |show| %>
-  <h2><%= I18n.l show.date, :format => "%A %Y-%m-%d" %></h2>
-  <%= show.max - show.taken %>/<%= show.max %>
+  <h2><%= I18n.l show.date, :format => "%A %Y-%m-%d %H:%M" %></h2>
+  <%= show.max - show.taken %> beschikbaar
 <% end %>
