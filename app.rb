@@ -3,7 +3,7 @@ require 'sinatra'
 require 'data_mapper'
 require 'i18n'
 
-I18n.load_path += Dir["#{Dir.pwd}/locale/*.yml"]
+I18n.load_path += Dir[File.join(settings.root, 'locales', '*.yml')]
 I18n.default_locale = :nl
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/2014.db")
